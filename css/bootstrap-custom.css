@@ -1,0 +1,321 @@
+/* Bootstrap 5 Custom Theme - Many Rounds */
+
+:root {
+    /* Primary Colors */
+    --bs-primary: #4A0E0E;
+    --bs-primary-rgb: 74, 14, 14;
+    
+    /* Secondary Colors */
+    --bs-secondary: #F5F0E8;
+    --bs-secondary-rgb: 245, 240, 232;
+    
+    /* Custom Colors */
+    --color-oxblood: #4A0E0E;
+    --color-oxblood-dark: #2D0808;
+    --color-oxblood-light: #6B1A1A;
+    --color-beige: #F5F0E8;
+    --color-tan: #D4C9B8;
+    --color-gold: #C9A84C;
+    --color-dark: #1A1A1A;
+    --color-darker: #0D0D0D;
+    --color-surface: #2A2A2A;
+    --color-text-primary: #F5F0E8;
+    --color-text-secondary: #A89F91;
+    
+    /* Typography */
+    --font-display: 'Bebas Neue', 'Oswald', sans-serif;
+    --font-body: 'Inter', 'Roboto', sans-serif;
+    --font-mono: 'Roboto Mono', 'JetBrains Mono', monospace;
+}
+
+/* Typography */
+html {
+    font-family: var(--font-body);
+}
+
+body {
+    background-color: var(--color-darker);
+    color: var(--color-text-primary);
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--color-text-primary);
+}
+
+/* Headings */
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: var(--font-display);
+}
+
+/* Buttons */
+.btn {
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    transition: all 0.2s ease;
+}
+
+.btn-primary,
+.btn-cta {
+    background-color: var(--color-oxblood);
+    border-color: var(--color-oxblood);
+    color: var(--color-text-primary);
+}
+
+.btn-primary:hover,
+.btn-cta:hover {
+    background-color: var(--color-oxblood-dark);
+    border-color: var(--color-oxblood-dark);
+}
+
+.btn-primary:active,
+.btn-cta:active {
+    background-color: var(--color-oxblood-dark) !important;
+    box-shadow: none !important;
+}
+
+.btn-secondary {
+    background-color: var(--color-oxblood-light);
+    border-color: var(--color-oxblood-light);
+    color: var(--color-text-primary);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-oxblood);
+    border-color: var(--color-oxblood);
+}
+
+.btn-outline-primary {
+    color: var(--color-oxblood);
+    border-color: var(--color-oxblood);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--color-oxblood);
+    border-color: var(--color-oxblood);
+}
+
+/* Form Controls */
+.form-control,
+.form-select,
+.form-range {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-tan);
+    color: var(--color-text-primary);
+}
+
+.form-control:focus,
+.form-select:focus,
+.form-range:focus {
+    background-color: var(--color-surface);
+    border-color: var(--color-oxblood);
+    color: var(--color-text-primary);
+    box-shadow: 0 0 0 0.25rem rgba(74, 14, 14, 0.25);
+}
+
+.form-control::placeholder {
+    color: var(--color-text-secondary);
+}
+
+.form-label {
+    color: var(--color-text-primary);
+    font-weight: 500;
+}
+
+.form-text {
+    color: var(--color-text-secondary);
+}
+
+/* Input Range Styling */
+.form-range {
+    height: 0.5rem;
+}
+
+.form-range::-webkit-slider-thumb {
+    background: var(--color-gold);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.form-range::-moz-range-thumb {
+    background: var(--color-gold);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.form-range::-webkit-slider-runnable-track {
+    background: var(--color-surface);
+    border-radius: 0.25rem;
+}
+
+.form-range::-moz-range-track {
+    background: transparent;
+}
+
+.form-range::-moz-range-progress {
+    background: var(--color-oxblood);
+}
+
+/* Cards */
+.card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-tan);
+    border-radius: 12px;
+}
+
+.card-header {
+    background-color: rgba(201, 168, 76, 0.1);
+    border-bottom: 1px solid var(--color-tan);
+}
+
+.card-body {
+    color: var(--color-text-primary);
+}
+
+/* Navbar */
+.navbar {
+    background-color: var(--color-dark) !important;
+    padding: 1rem;
+    border-bottom: 2px solid var(--color-oxblood);
+}
+
+.navbar-dark .navbar-brand {
+    color: var(--color-text-primary);
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.navbar-dark .navbar-toggler {
+    border-color: var(--color-text-primary);
+}
+
+.navbar-dark .navbar-toggler:focus {
+    box-shadow: 0 0 0 0.25rem rgba(74, 14, 14, 0.5);
+}
+
+/* Modal */
+.modal-content {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-tan);
+    border-radius: 16px;
+    color: var(--color-text-primary);
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--color-tan);
+}
+
+.modal-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+}
+
+.btn-close {
+    filter: invert(1);
+}
+
+/* Alerts & Progress */
+.alert {
+    border-radius: 8px;
+    border: none;
+}
+
+.alert-success {
+    background-color: rgba(76, 175, 80, 0.15);
+    color: #81C784;
+}
+
+.alert-danger {
+    background-color: rgba(229, 57, 53, 0.15);
+    color: #EF5350;
+}
+
+.alert-warning {
+    background-color: rgba(255, 193, 7, 0.15);
+    color: #FFD54F;
+}
+
+.progress {
+    background-color: var(--color-surface);
+    border-radius: 8px;
+    height: 0.5rem;
+}
+
+.progress-bar {
+    background-color: var(--color-oxblood);
+}
+
+/* Links */
+a {
+    color: var(--color-gold);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: #E8C368;
+    text-decoration: underline;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-oxblood);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-gold);
+}
+
+/* Utility Classes */
+.text-primary {
+    color: var(--color-oxblood) !important;
+}
+
+.text-secondary {
+    color: var(--color-text-secondary) !important;
+}
+
+.bg-primary {
+    background-color: var(--color-oxblood) !important;
+}
+
+.bg-dark {
+    background-color: var(--color-dark) !important;
+}
+
+.border-primary {
+    border-color: var(--color-oxblood) !important;
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+    h1, .h1 {
+        font-size: 2rem;
+    }
+    
+    h2, .h2 {
+        font-size: 1.5rem;
+    }
+    
+    h3, .h3 {
+        font-size: 1.25rem;
+    }
+}

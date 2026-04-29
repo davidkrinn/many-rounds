@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Many Rounds - A free, customizable boxing training app with AI-powered combo calls and background music.">
+    <meta name="theme-color" content="#4A0E0E">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Many Rounds">
+    
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/bootstrap-custom.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    
+    <title>Many Rounds - Boxing Training Timer & Combo Trainer</title>
+</head>
+<body>
+    <!-- Main App Container -->
+    <div id="app" class="app-container">
+        <!-- Navigation -->
+        <nav id="main-nav" class="navbar navbar-dark bg-dark">
+            <div class="navbar-brand">
+                <img src="img/logo-placeholder.svg" alt="Many Rounds" class="logo" width="40" height="40">
+                <span class="brand-text">Many Rounds</span>
+            </div>
+            <button class="navbar-toggler" type="button" id="menu-toggle">
+                <i class="bi bi-list"></i>
+            </button>
+        </nav>
+
+        <!-- Sidebar Menu -->
+        <div id="sidebar-menu" class="sidebar-menu">
+            <button class="menu-close" id="menu-close">
+                <i class="bi bi-x"></i>
+            </button>
+            <ul class="menu-list">
+                <li><a href="#/" class="menu-item" data-page="home">Quick Match</a></li>
+                <li><a href="#/create" class="menu-item" data-page="create">Create a Match</a></li>
+                <li><a href="#/saved" class="menu-item" data-page="saved">Saved Matches</a></li>
+                <li><a href="#/settings" class="menu-item" data-page="settings">Settings</a></li>
+                <li><a href="#/how-to" class="menu-item" data-page="how-to">How to Use</a></li>
+                <li><a href="#/about" class="menu-item" data-page="about">About / Contact</a></li>
+            </ul>
+        </div>
+
+        <!-- Page Container -->
+        <main id="page-container" class="page-container">
+            <!-- Homepage -->
+            <div id="home-page" class="page active">
+                <div class="homepage-hero">
+                    <div class="hero-background">
+                        <img src="img/hero-boxer-placeholder.jpg" alt="Boxing Training" class="hero-image">
+                        <div class="hero-overlay"></div>
+                    </div>
+                    <div class="hero-content">
+                        <div class="hero-header">
+                            <h1 class="hero-title">MANY ROUNDS</h1>
+                        </div>
+                        <button id="quick-match-btn" class="btn btn-cta btn-lg">
+                            Set up your match
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Punch Reference Section -->
+                <section class="punch-reference-section">
+                    <div class="container">
+                        <h2 class="section-title">Know Your Numbers</h2>
+                        <div class="punch-grid">
+                            <div class="punch-card">
+                                <div class="punch-number">1</div>
+                                <div class="punch-name">JAB</div>
+                            </div>
+                            <div class="punch-card">
+                                <div class="punch-number">2</div>
+                                <div class="punch-name">CROSS</div>
+                            </div>
+                            <div class="punch-card">
+                                <div class="punch-number">3</div>
+                                <div class="punch-name">LEAD HOOK</div>
+                            </div>
+                            <div class="punch-card">
+                                <div class="punch-number">4</div>
+                                <div class="punch-name">REAR HOOK</div>
+                            </div>
+                            <div class="punch-card">
+                                <div class="punch-number">5</div>
+                                <div class="punch-name">LEAD UPPERCUT</div>
+                            </div>
+                            <div class="punch-card">
+                                <div class="punch-number">6</div>
+                                <div class="punch-name">REAR UPPERCUT</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Create a Match Page -->
+            <div id="create-page" class="page">
+                <div class="container py-4">
+                    <h1 class="page-title">Create a Match</h1>
+
+                    <form id="match-config-form" class="match-config-form">
+                        <!-- Timing Section -->
+                        <div class="config-section">
+                            <h3 class="section-subtitle">Timing</h3>
+                            
+                            <div class="form-group">
+                                <label for="rounds">Rounds: <span id="rounds-value">5</span></label>
+                                <input type="range" id="rounds" class="form-range" min="1" max="12" value="5">
+                                <small class="form-text">1–12 rounds</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="round-length">Round Length: <span id="round-length-value">2:00</span></label>
+                                <input type="range" id="round-length" class="form-range" min="30" max="300" step="15" value="120">
+                                <small class="form-text">30 seconds – 5 minutes</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="break-length">Break Length: <span id="break-length-value">1:00</span></label>
+                                <input type="range" id="break-length" class="form-range" min="30" max="300" step="15" value="60">
+                                <small class="form-text">30 seconds – 5 minutes</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="warning-bell">Warning Bell: <span id="warning-bell-value">10</span>s</label>
+                                <input type="range" id="warning-bell" class="form-range" min="5" max="30" step="5" value="10">
+                                <small class="form-text">5–30 seconds before round end</small>
+                            </div>
+                        </div>
+
+                        <!-- Difficulty Section -->
+                        <div class="config-section">
+                            <h3 class="section-subtitle">Difficulty</h3>
+                            <div class="difficulty-selector">
+                                <button type="button" class="difficulty-btn active" data-difficulty="beginner">
+                                    <div class="difficulty-label">Beginner</div>
+                                    <small>2–3 punches, slower pace</small>
+                                </button>
+                                <button type="button" class="difficulty-btn" data-difficulty="up-and-comer">
+                                    <div class="difficulty-label">Up-and-Comer</div>
+                                    <small>3–5 punches, moderate pace</small>
+                                </button>
+                                <button type="button" class="difficulty-btn" data-difficulty="champ">
+                                    <div class="difficulty-label">Champ</div>
+                                    <small>4–6 punches + defense</small>
+                                </button>
+                            </div>
+                            <div class="punch-reference-link">
+                                <button type="button" class="btn-link" id="punch-ref-btn">
+                                    <i class="bi bi-info-circle"></i> View punch guide
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Voice Section -->
+                        <div class="config-section">
+                            <h3 class="section-subtitle">Voice</h3>
+                            <div class="voice-selector">
+                                <div class="voice-option">
+                                    <label>Gender:</label>
+                                    <div class="gender-buttons">
+                                        <button type="button" class="voice-btn active" data-gender="male">Male</button>
+                                        <button type="button" class="voice-btn" data-gender="female">Female</button>
+                                    </div>
+                                </div>
+                                <div class="voice-option">
+                                    <label>Tone:</label>
+                                    <div class="tone-buttons">
+                                        <button type="button" class="voice-btn active" data-tone="encouraging">Encouraging</button>
+                                        <button type="button" class="voice-btn" data-tone="stern">Stern</button>
+                                        <button type="button" class="voice-btn" data-tone="gruff">Gruff</button>
+                                        <button type="button" class="voice-btn" data-tone="motivating">Motivating</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Display Section -->
+                        <div class="config-section">
+                            <h3 class="section-subtitle">Display</h3>
+                            <div class="display-selector">
+                                <label class="toggle-label">
+                                    <input type="checkbox" id="display-mode" class="toggle-input">
+                                    <span class="toggle-slider"></span>
+                                    <span class="toggle-text">Full combo (vs. one-at-a-time)</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Intensity Section -->
+                        <div class="config-section">
+                            <h3 class="section-subtitle">Intensity</h3>
+                            <div class="form-group">
+                                <label for="combo-frequency">Combo Frequency</label>
+                                <input type="range" id="combo-frequency" class="form-range" min="1" max="10" value="5">
+                                <div class="frequency-labels">
+                                    <small>Constant</small>
+                                    <small>Spaced Out</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Music Section -->
+                        <div class="config-section">
+                            <h3 class="section-subtitle">Background Music</h3>
+                            <div class="music-selector">
+                                <div class="music-option">
+                                    <input type="radio" name="music" id="music-none" value="none" checked>
+                                    <label for="music-none">None</label>
+                                </div>
+                                <div class="music-option">
+                                    <input type="radio" name="music" id="music-rock" value="rock">
+                                    <label for="music-rock">
+                                        <span>Rock</span>
+                                        <button type="button" class="btn-preview" data-music="rock">
+                                            <i class="bi bi-play-fill"></i> Preview
+                                        </button>
+                                    </label>
+                                </div>
+                                <div class="music-option">
+                                    <input type="radio" name="music" id="music-metal" value="metal">
+                                    <label for="music-metal">
+                                        <span>Metal</span>
+                                        <button type="button" class="btn-preview" data-music="metal">
+                                            <i class="bi bi-play-fill"></i> Preview
+                                        </button>
+                                    </label>
+                                </div>
+                                <div class="music-option">
+                                    <input type="radio" name="music" id="music-rap" value="rap">
+                                    <label for="music-rap">
+                                        <span>Rap</span>
+                                        <button type="button" class="btn-preview" data-music="rap">
+                                            <i class="bi bi-play-fill"></i> Preview
+                                        </button>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="config-actions">
+                            <button type="submit" class="btn btn-cta btn-lg">Start Match</button>
+                            <button type="button" class="btn btn-secondary" id="save-match-btn">Save Match</button>
+                            <a href="#/settings" class="btn btn-link">
+                                <i class="bi bi-gear"></i> Settings
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Saved Matches Page -->
+            <div id="saved-page" class="page">
+                <div class="container py-4">
+                    <h1 class="page-title">Saved Matches</h1>
+                    <div id="saved-matches-list" class="saved-matches-list">
+                        <p class="empty-state">No saved matches yet. <a href="#/create">Create your first match</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Page -->
+            <div id="settings-page" class="page">
+                <div class="container py-4">
+                    <h1 class="page-title">Settings</h1>
+                    <form id="settings-form" class="settings-form">
+                        <div class="settings-group">
+                            <h3>Voice Defaults</h3>
+                            <div class="form-group">
+                                <label>Gender:</label>
+                                <div class="gender-buttons">
+                                    <button type="button" class="voice-btn active" data-gender="male">Male</button>
+                                    <button type="button" class="voice-btn" data-gender="female">Female</button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Tone:</label>
+                                <div class="tone-buttons">
+                                    <button type="button" class="voice-btn active" data-tone="encouraging">Encouraging</button>
+                                    <button type="button" class="voice-btn" data-tone="stern">Stern</button>
+                                    <button type="button" class="voice-btn" data-tone="gruff">Gruff</button>
+                                    <button type="button" class="voice-btn" data-tone="motivating">Motivating</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="settings-group">
+                            <h3>Display</h3>
+                            <div class="form-group">
+                                <label class="toggle-label">
+                                    <input type="checkbox" id="settings-display-mode" class="toggle-input">
+                                    <span class="toggle-slider"></span>
+                                    <span class="toggle-text">Full combo display (default)</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="settings-group">
+                            <h3>Volume</h3>
+                            <div class="form-group">
+                                <label for="master-volume">Master Volume: <span id="volume-value">100</span>%</label>
+                                <input type="range" id="master-volume" class="form-range" min="0" max="100" value="100">
+                            </div>
+                        </div>
+
+                        <small class="settings-note">These are your default settings. You can override them for each match.</small>
+                    </form>
+                </div>
+            </div>
+
+            <!-- How to Use Page -->
+            <div id="how-to-page" class="page">
+                <div class="container py-4">
+                    <h1 class="page-title">How to Use</h1>
+                    <div class="how-to-content">
+                        <h2>The Number System</h2>
+                        <div class="punch-reference-full">
+                            <div class="punch-item">
+                                <span class="punch-number">1</span>
+                                <span class="punch-detail"><strong>Jab</strong> — Quick punch with your lead hand</span>
+                            </div>
+                            <div class="punch-item">
+                                <span class="punch-number">2</span>
+                                <span class="punch-detail"><strong>Cross</strong> — Power punch with your rear hand</span>
+                            </div>
+                            <div class="punch-item">
+                                <span class="punch-number">3</span>
+                                <span class="punch-detail"><strong>Lead Hook</strong> — Hook with your lead hand</span>
+                            </div>
+                            <div class="punch-item">
+                                <span class="punch-number">4</span>
+                                <span class="punch-detail"><strong>Rear Hook</strong> — Hook with your rear hand</span>
+                            </div>
+                            <div class="punch-item">
+                                <span class="punch-number">5</span>
+                                <span class="punch-detail"><strong>Lead Uppercut</strong> — Uppercut with your lead hand</span>
+                            </div>
+                            <div class="punch-item">
+                                <span class="punch-number">6</span>
+                                <span class="punch-detail"><strong>Rear Uppercut</strong> — Uppercut with your rear hand</span>
+                            </div>
+                        </div>
+
+                        <h2 style="margin-top: 2rem;">Defensive Moves (Champ Only)</h2>
+                        <div class="defensive-moves">
+                            <div class="move-item">
+                                <strong>SLIP</strong> — Move your head side-to-side to avoid punches
+                            </div>
+                            <div class="move-item">
+                                <strong>ROLL</strong> — Roll your shoulders to deflect incoming punches
+                            </div>
+                            <div class="move-item">
+                                <strong>BLOCK</strong> — Raise your hands to block incoming punches
+                            </div>
+                            <div class="move-item">
+                                <strong>STEP BACK</strong> — Create distance by stepping backward
+                            </div>
+                        </div>
+
+                        <h2 style="margin-top: 2rem;">Setting Up a Match</h2>
+                        <ol class="setup-steps">
+                            <li>Tap "Create a Match" to customize your training</li>
+                            <li>Choose your rounds, timing, and difficulty level</li>
+                            <li>Select your preferred voice and music</li>
+                            <li>Tap "Start Match" to begin</li>
+                            <li>Tap "Pause" anytime if you need a break</li>
+                        </ol>
+
+                        <h2 style="margin-top: 2rem;">Tips for Training</h2>
+                        <ul class="tips-list">
+                            <li>Start with Beginner if you're new to boxing</li>
+                            <li>Use landscape mode if you prop your phone up</li>
+                            <li>Wear headphones for best audio experience</li>
+                            <li>Move to an open space before starting</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- About Page -->
+            <div id="about-page" class="page">
+                <div class="container py-4">
+                    <h1 class="page-title">About</h1>
+                    <div class="about-content">
+                        <h2>About Many Rounds</h2>
+                        <p>Many Rounds is a free, web-based boxing training app that combines a fully customizable round timer with an intelligent combo engine. Whether you're a beginner learning the basics or an advanced fighter looking for challenging drills, Many Rounds adapts to your level.</p>
+
+                        <h2 style="margin-top: 2rem;">Features</h2>
+                        <ul>
+                            <li>Customizable rounds, timing, and difficulty levels</li>
+                            <li>8 unique voice profiles to keep training fresh</li>
+                            <li>Multiple difficulty levels with defensive moves at the highest level</li>
+                            <li>Background music selection (Rock, Metal, Rap)</li>
+                            <li>Save your favorite match configurations</li>
+                            <li>Works offline — no internet required</li>
+                            <li>Installable as a PWA for a native app experience</li>
+                        </ul>
+
+                        <h2 style="margin-top: 2rem;">Contact</h2>
+                        <p>Have feedback or questions? Reach out at: <strong>contact@manyrounds.app</strong></p>
+
+                        <h2 style="margin-top: 2rem;">Credits & Licensing</h2>
+                        <p>Many Rounds uses open-source libraries and royalty-free assets. See <strong>LICENSES.md</strong> in our GitHub repository for complete attribution.</p>
+
+                        <p style="margin-top: 2rem; font-size: 0.9rem; color: #A89F91;">Version 1.0 • © 2026 Many Rounds</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Punch Reference Modal -->
+    <div id="punch-modal" class="modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Punch Reference</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="punch-reference-modal">
+                        <h6>Punch Numbers (1–6)</h6>
+                        <div class="punch-list">
+                            <div class="punch-row">1 = Jab</div>
+                            <div class="punch-row">2 = Cross</div>
+                            <div class="punch-row">3 = Lead Hook</div>
+                            <div class="punch-row">4 = Rear Hook</div>
+                            <div class="punch-row">5 = Lead Uppercut</div>
+                            <div class="punch-row">6 = Rear Uppercut</div>
+                        </div>
+                        <h6 style="margin-top: 1rem;">Defensive Moves (Champ Only)</h6>
+                        <div class="punch-list">
+                            <div class="punch-row">SLIP = Head movement</div>
+                            <div class="punch-row">ROLL = Shoulder deflection</div>
+                            <div class="punch-row">BLOCK = Hand protection</div>
+                            <div class="punch-row">STEP BACK = Create distance</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- App Scripts -->
+    <script src="js/app.js"></script>
+    <script src="js/timer.js"></script>
+    <script src="js/combo-engine.js"></script>
+    <script src="js/audio-engine.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/wake-lock.js"></script>
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js').catch(err => {
+                console.log('Service Worker registration failed:', err);
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,281 @@
+/* Many Rounds - Animation Styles */
+
+/* Break Circle Fill Animation */
+@keyframes circleFill {
+    from {
+        clip-path: inset(100% 0 0 0);
+    }
+    to {
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+.break-circle-fill {
+    animation: circleFill linear forwards;
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.pulse {
+    animation: pulse 0.4s ease-in-out;
+}
+
+.pulse-repeat {
+    animation: pulse 0.4s ease-in-out infinite;
+}
+
+/* Combo Display Animations */
+@keyframes comboFlash {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.combo-flash {
+    animation: comboFlash 0.4s ease-out;
+}
+
+@keyframes comboOut {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+}
+
+.combo-out {
+    animation: comboOut 0.2s ease-in;
+}
+
+/* Highlight Animation */
+@keyframes highlight {
+    0% {
+        color: #F5F0E8;
+    }
+    50% {
+        color: #C9A84C;
+        text-shadow: 0 0 10px rgba(201, 168, 76, 0.5);
+    }
+    100% {
+        color: #F5F0E8;
+    }
+}
+
+.highlight {
+    animation: highlight 0.3s ease-out;
+}
+
+/* Slide In */
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.slide-in-left {
+    animation: slideInLeft 0.3s ease-out;
+}
+
+@keyframes slideOutLeft {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}
+
+.slide-out-left {
+    animation: slideOutLeft 0.3s ease-out;
+}
+
+/* Fade In/Out */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.fade-out {
+    animation: fadeOut 0.3s ease-out;
+}
+
+/* Button Press Animation */
+@keyframes buttonPress {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.button-press {
+    animation: buttonPress 0.2s ease-out;
+}
+
+/* Loading Spinner */
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.spinner {
+    animation: spin 1s linear infinite;
+}
+
+/* Bounce In */
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.bounce-in {
+    animation: bounceIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Shake */
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-5px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(5px);
+    }
+}
+
+.shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+/* Round Number Scale */
+@keyframes scaleUp {
+    from {
+        transform: scale(0.8);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+.scale-up {
+    animation: scaleUp 0.3s ease-out;
+}
+
+/* Beep Visual Feedback */
+@keyframes beepFlash {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(201, 168, 76, 0);
+    }
+    50% {
+        box-shadow: 0 0 0 10px rgba(201, 168, 76, 0.1);
+    }
+}
+
+.beep-flash {
+    animation: beepFlash 0.5s ease-out;
+}
+
+/* Warning Bell Indicator */
+@keyframes warningPulse {
+    0%, 100% {
+        background-color: #4A0E0E;
+    }
+    50% {
+        background-color: #E53935;
+    }
+}
+
+.warning-pulse {
+    animation: warningPulse 0.5s ease-in-out;
+}
+
+/* Modal Entrance */
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal.show .modal-dialog {
+    animation: slideUp 0.3s ease-out;
+}
+
+/* Smooth transitions */
+* {
+    transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
